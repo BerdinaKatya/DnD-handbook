@@ -8,7 +8,6 @@
 import UIKit
 
 enum Link {
-    case raceURL
     case dragonbornURL
     case dwarfURL
     case elfURL
@@ -21,8 +20,6 @@ enum Link {
     
     var url: URL {
         switch self {
-        case .raceURL:
-            return URL(string: "https://www.dnd5eapi.co/api/races")!
         case .dragonbornURL:
             return URL(string: "https://www.dnd5eapi.co/api/races/dragonborn")!
         case .dwarfURL:
@@ -45,43 +42,64 @@ enum Link {
     }
 }
 
-final class TableViewController: UITableViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        fetchRace()
-        print()
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 10
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
+enum RacesAction: CaseIterable {
+    case showDragonborn
+    case showDwarf
+    case showElf
+    case showGnome
+    case showHalfelf
+    case showHalforc
+    case showHalfling
+    case showHuman
+    case showTiefling
     
-    // MARK: - Private methods
-    private func fetchRace() {
-        
-        URLSession.shared.dataTask(with: Link.elfURL.url) { data, _, error in
-            guard let data else {
-                print(error?.localizedDescription ?? "No error description")
-                return
-            }
-            
-            let decoder = JSONDecoder()
-            
-            do {
-                let race = try decoder.decode(Race.self, from: data)
-                print(race)
-            } catch let error {
-                print(String(describing: error))
-            }
-        }.resume()
+    var title: String {
+        switch self {
+        case .showDragonborn:
+            return "Dragonborn"
+        case .showDwarf:
+            return "Dwarf"
+        case .showElf:
+            return "Elf"
+        case .showGnome:
+            return "Gnome"
+        case .showHalfelf:
+            return "Half - Elf"
+        case .showHalforc:
+            return "Half - Orc"
+        case .showHalfling:
+            return "Halfling"
+        case .showHuman:
+            return "Human"
+        case .showTiefling:
+            return "Tiefling"
+        }
     }
 }
+
+final class TableViewController: UITableViewController {
+    
+    private let races = RacesAction.allCases
+    private let networkManager = NetworkManager.shared
+    
+    // MARK: - Table view data source
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        races.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        guard let cell = cell as? RaceCell else { return UITableViewCell() }
+        cell.raceLabel.text = "✨ \(races[indexPath.row].title)"
+        return cell
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        guard let raceVC = segue.destination as? RaceViewController else { return }
+        raceVC.title = races[indexPath.row].title
+    }
+}
+

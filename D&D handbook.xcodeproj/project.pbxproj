@@ -14,6 +14,9 @@
 		64B9ECC92AAF2D1100E9C8AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64B9ECC72AAF2D1100E9C8AE /* LaunchScreen.storyboard */; };
 		64B9ECD52AAF2DEB00E9C8AE /* Race.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B9ECD42AAF2DEB00E9C8AE /* Race.swift */; };
 		64B9ECD72AAF2E3B00E9C8AE /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B9ECD62AAF2E3B00E9C8AE /* TableViewController.swift */; };
+		64B9ECDD2AB0B3C300E9C8AE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B9ECDC2AB0B3C300E9C8AE /* NetworkManager.swift */; };
+		64B9ECE02AB0B40600E9C8AE /* RaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B9ECDF2AB0B40600E9C8AE /* RaceCell.swift */; };
+		64B9ECE22AB16B0700E9C8AE /* RaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B9ECE12AB16B0700E9C8AE /* RaceViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		64B9ECCA2AAF2D1100E9C8AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64B9ECD42AAF2DEB00E9C8AE /* Race.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Race.swift; sourceTree = "<group>"; };
 		64B9ECD62AAF2E3B00E9C8AE /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		64B9ECDC2AB0B3C300E9C8AE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		64B9ECDF2AB0B40600E9C8AE /* RaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceCell.swift; sourceTree = "<group>"; };
+		64B9ECE12AB16B0700E9C8AE /* RaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +67,9 @@
 				64B9ECD02AAF2D2D00E9C8AE /* App */,
 				64B9ECD22AAF2D7100E9C8AE /* Storiboards */,
 				64B9ECD12AAF2D4200E9C8AE /* View Controllers */,
+				64B9ECDE2AB0B3CD00E9C8AE /* View */,
 				64B9ECD32AAF2D8E00E9C8AE /* Models */,
+				64B9ECDB2AB0B38800E9C8AE /* Services */,
 				64B9ECCA2AAF2D1100E9C8AE /* Info.plist */,
 				64B9ECC52AAF2D1100E9C8AE /* Assets.xcassets */,
 			);
@@ -81,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				64B9ECD62AAF2E3B00E9C8AE /* TableViewController.swift */,
+				64B9ECE12AB16B0700E9C8AE /* RaceViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -100,6 +109,22 @@
 				64B9ECD42AAF2DEB00E9C8AE /* Race.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		64B9ECDB2AB0B38800E9C8AE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				64B9ECDC2AB0B3C300E9C8AE /* NetworkManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		64B9ECDE2AB0B3CD00E9C8AE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				64B9ECDF2AB0B40600E9C8AE /* RaceCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +200,9 @@
 			files = (
 				64B9ECD52AAF2DEB00E9C8AE /* Race.swift in Sources */,
 				64B9ECBD2AAF2D0F00E9C8AE /* AppDelegate.swift in Sources */,
+				64B9ECE22AB16B0700E9C8AE /* RaceViewController.swift in Sources */,
+				64B9ECE02AB0B40600E9C8AE /* RaceCell.swift in Sources */,
+				64B9ECDD2AB0B3C300E9C8AE /* NetworkManager.swift in Sources */,
 				64B9ECBF2AAF2D0F00E9C8AE /* SceneDelegate.swift in Sources */,
 				64B9ECD72AAF2E3B00E9C8AE /* TableViewController.swift in Sources */,
 			);
