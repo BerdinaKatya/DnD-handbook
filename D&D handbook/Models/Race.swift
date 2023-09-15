@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct DnDRace: Decodable {
+    let count: Int
+    let results: [Name]
+}
+
 struct Race: Decodable {
     let index: String
     let name: String
@@ -21,7 +26,22 @@ struct Race: Decodable {
     let languageDesc: String
     let traits: [Name]
     let subraces: [Name]
-    let url: String
+    let url: URL
+    
+    var description: String {
+        """
+    Speed: \(speed)
+
+    Alignment: \(alignment)
+
+    Age: \(age)
+
+    Size: \(size). \(sizeDescription)
+
+    Languages: \(languageDesc)
+
+    """
+    }
 }
 
 struct AbilityBonus: Decodable {
@@ -32,5 +52,16 @@ struct AbilityBonus: Decodable {
 struct Name: Decodable {
     let index: String
     let name: String
-    let url: String
+    let url: URL
+}
+
+enum RickAndMortyAPI {
+    case baseURL
+    
+    var url: URL {
+        switch self {
+        case .baseURL:
+            return URL(string: "https://www.dnd5eapi.co/api/races")!
+        }
+    }
 }

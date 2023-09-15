@@ -8,38 +8,29 @@
 import UIKit
 
 final class RaceViewController: UIViewController {
-
-    private let networkManager = NetworkManager.shared
+    
+    var url: URL!
+    var image: UIImage!
 
     @IBOutlet weak var infoRaceLabel: UILabel!
     @IBOutlet weak var raceImage: UIImageView!
     
+    private let networkManager = NetworkManager.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchDragonborn()
-        raceImage.image = UIImage(named: "dragonborn image.png")
+        fetchRace(from: url)
+        raceImage.image = image
     }
 }
 
 // MARK: - Networking
 extension RaceViewController {
-    func fetchDragonborn() {
-        networkManager.fetch(Race.self, from: Link.dragonbornURL.url) { [weak self] result in
+    func fetchRace(from url: URL?) {
+        networkManager.fetch(Race.self, from: url!) { [weak self] result in
             switch result {
-            case .success(let dragonbornRace):
-                self?.infoRaceLabel.text = """
-                    Speed: \(dragonbornRace.speed)
-
-                    Alignment: \(dragonbornRace.alignment)
-
-                    Age: \(dragonbornRace.age)
-
-                    Size: \(dragonbornRace.size). \(dragonbornRace.sizeDescription)
-
-                    Languages: \(dragonbornRace.languageDesc)
-
-                    """
-
+            case .success(let race):
+                self?.infoRaceLabel.text = race.description
             case .failure(let error):
                 print(String(describing: error))
             }
