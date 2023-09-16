@@ -16,7 +16,6 @@ struct Race: Decodable {
     let index: String
     let name: String
     let speed: Int
-    let abilityBonuses: [AbilityBonus]
     let age: String
     let alignment: String
     let size: String
@@ -27,26 +26,46 @@ struct Race: Decodable {
     let traits: [Name]
     let subraces: [Name]
     let url: URL
+     
+    var isTraits: String {
+        traits.isEmpty ? " " :
+        """
+        Traits
+        \(traits.map({ $0.name }).joined(separator: ", "))
+        """
+    }
+    
+    var isSubraces: String {
+        subraces.isEmpty ? " " :
+        """
+        Subraces
+        \(subraces.map({ $0.name }).joined(separator: ", "))
+        """
+    }
     
     var description: String {
         """
-    Speed: \(speed)
+    Speed
+    \(speed)
 
-    Alignment: \(alignment)
+    Alignment
+    \(alignment)
 
-    Age: \(age)
+    Age
+    \(age)
 
-    Size: \(size). \(sizeDescription)
+    Size
+    \(size). \(sizeDescription)
 
-    Languages: \(languageDesc)
-
+    Languages
+    \(languageDesc)
+    
+    \(isTraits)
+    
+    \(isSubraces)
+    
     """
     }
-}
-
-struct AbilityBonus: Decodable {
-    let abilityscore: [Name]?
-    let bonus: Int
 }
 
 struct Name: Decodable {
@@ -55,12 +74,12 @@ struct Name: Decodable {
     let url: URL
 }
 
-enum RickAndMortyAPI {
-    case baseURL
+enum DnDAPI {
+    case racesURL
     
     var url: URL {
         switch self {
-        case .baseURL:
+        case .racesURL:
             return URL(string: "https://www.dnd5eapi.co/api/races")!
         }
     }

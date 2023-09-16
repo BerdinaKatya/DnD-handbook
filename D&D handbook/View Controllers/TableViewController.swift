@@ -16,7 +16,7 @@ final class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData(from: RickAndMortyAPI.baseURL.url)
+        fetchData(from: DnDAPI.racesURL.url)
     }
     
     // MARK: - Navigation
